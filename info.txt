@@ -1,0 +1,3 @@
+requires packages: pywin32 and pyaudio
+to use make audio go through speakers (plug headphones into front jack)
+make "stereo mix" the default input (and make sure stereo mix level is 100%)
