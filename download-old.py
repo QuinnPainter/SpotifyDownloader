@@ -1,39 +1,29 @@
 import win32gui
+import win32api
 import time
 import pyaudio
 import wave
 import os
 import spotipy
 import spotipy.util as util
-import configreader
 
-savedOptions = configreader.read()
-if savedOptions == 0:
-    print ("Config file not found! Creating one now.")
-    configreader.create()
-    print ("See the readme.md for instructions on setting this up.")
-    exit()
-elif savedOptions == 1:
-    print ("Error reading config file!")
-    exit()
+Key Codes
+Media_Next = 0xB0
+Media_Previous = 0xB1
+Media_Pause = 0xB3 #This is also the play button
+Media_Mute = 0xAD
+
+def pressButton(button):
+    win32api.keybd_event(button, win32api.MapVirtualKey(button, 0))
 
 #Options
-username = savedOptions[0]
-ClientID = savedOptions[1]
-ClientSecret = savedOptions[2]
-RedirectURL = savedOptions[3]
-folderLocation = savedOptions[4]
+folderLocation = "music/"
 
 p = pyaudio.PyAudio()
 CHUNK = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
 RATE = 44100
-
-Scope = "user-read-currently-playing user-modify-playback-state"
-
-token = util.prompt_for_user_token(username, Scope, client_id=ClientID, client_secret=ClientSecret, redirect_uri=RedirectURL)
-spot = spotipy.Spotify(auth=token)
 
 def convertToValidPath(path):
     notAllowedCharacters = '\/:*?"<>|'
@@ -72,8 +62,7 @@ def writeToFile(path, data):
 
 numFilesSaved = 0
 filesFailed = []
-input("Ensure that some Spotify client is open, then press Enter")
-print(spot.currently_playing())
+input("Ensure no music is playing through Spotify and that the Spotify client is open, then press Enter")
 id = win32gui.FindWindow(None, "Spotify")
 if (id == 0):
     print ("Spotify not found!")
@@ -92,7 +81,7 @@ else:
         if checkFileExists(saveLocation):
             print ("File " + saveLocation + " already exists! Skipping the song")
             time.sleep(0.5) #If it skips too fast, Spotify freaks out
-            #pressButton(Media_Next)
+            pressButton(Media_Next)
             continue
         stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
         data = []
