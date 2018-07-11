@@ -11,17 +11,15 @@ def read():
     except FileNotFoundError:
         return 0
     data = file.readlines()
+    file.close()
     if not len(data) == 5:
-        file.close()
         return 1
     try:
         usefulData = list(map(lambda x: x.split("=", 1)[1].rstrip(), data)) #Loop through list, remove text before 1st equal sign, and strip whitespace
     except Exception as e:
         print ("Error occured while reading config: ")
         print (e)
-        file.close()
         return 1
-    file.close()
     return usefulData
     
 def create():

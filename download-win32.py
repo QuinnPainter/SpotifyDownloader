@@ -6,8 +6,9 @@ import wave
 import os
 import spotipy
 import spotipy.util as util
+import configreader
 
-Key Codes
+#Key Codes
 Media_Next = 0xB0
 Media_Previous = 0xB1
 Media_Pause = 0xB3 #This is also the play button
@@ -16,8 +17,17 @@ Media_Mute = 0xAD
 def pressButton(button):
     win32api.keybd_event(button, win32api.MapVirtualKey(button, 0))
 
+savedOptions = configreader.read()
+if savedOptions == 0:
+    print ("Config file not found! Creating one now.")
+    print ("Saving to /music.")
+    configreader.create()
+elif savedOptions == 1:
+    print ("Error reading config file!")
+    exit()    
+    
 #Options
-folderLocation = "music/"
+folderLocation = savedOptions[4]
 
 p = pyaudio.PyAudio()
 CHUNK = 1024
