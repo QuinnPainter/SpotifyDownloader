@@ -4,8 +4,6 @@ import time
 import pyaudio
 import wave
 import os
-import spotipy
-import spotipy.util as util
 import configreader
 
 #Key Codes
@@ -92,6 +90,7 @@ else:
             print ("File " + saveLocation + " already exists! Skipping the song")
             time.sleep(0.5) #If it skips too fast, Spotify freaks out
             pressButton(Media_Next)
+            time.sleep(0.5) #need to wait a sec after skipping too
             continue
         stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
         data = []

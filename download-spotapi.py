@@ -72,6 +72,8 @@ input("Ensure that some Spotify client is open, then press Enter")
 print ("Ensure no other sounds play during this process.")
 print ("You can start playing a playlist / song now.")
 print ("Waiting for playback to begin...")
+while True:
+    pass
 while spot.currently_playing()["is_playing"] == False:
     time.sleep(1) #Don't spam the API too much
 spot.seek_track(0) #Go back to the start of the song in case we missed anything
