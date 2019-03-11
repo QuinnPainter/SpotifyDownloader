@@ -5,6 +5,7 @@ import pyaudio
 import wave
 import os
 import configreader
+import datetime
 
 #Key Codes
 Media_Next = 0xB0
@@ -120,4 +121,5 @@ else:
         print ("Failed files: ")
         for f in filesFailed:
             print (f)
+    print("Finished at " + str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
     p.terminate()
