@@ -6,10 +6,10 @@ There are two version that can be used:
 - The Spotify API version uses the Spotify Web API to determine the currently playing song, and has more advanced features like metadata collection. Slightly more difficult to set up, but is more advanced and more reliable. Also has the benefit that it should run on anything that can run Spotify and Python. (Must use this one if using Mac/Linux)
 
 ### Requirements:
-- [Python 3] (https://www.python.org/downloads/)
-- [pywin32] (https://github.com/mhammond/pywin32) - Only required for the win32api version
-- [pyaudio] (https://github.com/jleb/pyaudio)
-- [spotipy] (https://github.com/plamere/spotipy) - Only required for Spotify API version
+- [Python 3](https://www.python.org/downloads/)
+- [pywin32](https://github.com/mhammond/pywin32) - Only required for the win32api version
+- [pyaudio](https://github.com/jleb/pyaudio)
+- [spotipy](https://github.com/plamere/spotipy) - Only required for Spotify API version
 
 ### Setup
 
@@ -17,10 +17,10 @@ Install `python3` and `pip`
 
 Use `pip install pyaudio` to install pyaudio.
 If using the win32api version, run 'pip install pywin32'
-This command requires [Visual Studio 2017 C++ Build Tools] (https://visualstudio.microsoft.com/downloads/) to be installed.
+This command requires [Visual Studio 2017 C++ Build Tools](https://visualstudio.microsoft.com/downloads/) to be installed.
 
-If using the spotify API version, run 'pip install git+https://github.com/plamere/spotipy.git --upgrade'
-This is important, as running 'pip install spotipy' will not work. The version in pip is outdated, and will not work.
+If using the spotify API version, run `pip install git+https://github.com/plamere/spotipy.git --upgrade`
+This is important, as running `pip install spotipy` will not work. The version in pip is outdated, and will not work.
 
 ### Usage
 
